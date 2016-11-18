@@ -20,7 +20,7 @@ $ zip -r slack-bot.zip *.js node_modules/*
 ### AWS Lambda
 1. Go to [AWS Lambda](https://ap-southeast-1.console.aws.amazon.com/lambda/home?region=ap-southeast-1).
 2. Click "Get Started Now".
-3. Under the "Select blueprint" screen, search for "hello-word"and you will see the hello-word blueprint which says "A starter AWS Lambda function.".
+3. Under the "Select blueprint" screen, search for "hello-world"and you will see the hello-world blueprint which says "A starter AWS Lambda function.".
 4. Click on "hello-world" (NOT "hello-world-python").
 5. You will be brought to the "Configure Function" page.
 6. Under "Name", you can choose any name for your function. I called it "slack-bot".
