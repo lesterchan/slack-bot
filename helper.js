@@ -52,7 +52,8 @@ module.exports = {
     return data.join(', ');
   },
   removeSlackMessageFormatting(text) {
-    let t = text.replace(/<([@#!])?([^>|]+)(?:\|([^>]+))?>/g, (() =>
+    let t = text;
+    t = t.replace(/<([@#!])?([^>|]+)(?:\|([^>]+))?>/g, (() =>
       (m, type, link, label) => {
         if (type === '!') {
           if (link === 'channel' || link === 'group' || link === 'everyone') {
@@ -66,9 +67,9 @@ module.exports = {
         }
         return l;
       })(this));
-    t = text.replace(/&lt;/g, '<');
-    t = text.replace(/&gt;/g, '>');
-    t = text.replace(/&amp;/g, '&');
+    t = t.replace(/&lt;/g, '<');
+    t = t.replace(/&gt;/g, '>');
+    t = t.replace(/&amp;/g, '&');
     return t;
   },
   validateIp(ip) {

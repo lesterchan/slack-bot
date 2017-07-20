@@ -168,7 +168,7 @@ describe('slack-bot', () => {
   it('Should list down social stats count for a link', (done) => {
     const output = lambda.handler({
       trigger_word: 'socialstats',
-      text: 'socialstats https://lesterchan.net/blog/2017/06/30/apple-ipad-pro-10-5-space-grey-256gb-wi-fi-cellular/',
+      text: 'socialstats <https://lesterchan.net/blog/2017/06/30/apple-ipad-pro-10-5-space-grey-256gb-wi-fi-cellular/>',
     }, context);
 
     output.then((response) => {

@@ -232,13 +232,11 @@ module.exports = {
       const fields = [];
       if (body.item.weatherForecast.area && body.item.weatherForecast.area.length > 0) {
         body.item.weatherForecast.area.forEach((nowcast) => {
-          fields.push(
-            {
-              title: helper.ucWords(nowcast['@attributes'].name),
-              value: helper.getMessage(nowcast['@attributes'].forecast),
-              short: true,
-            },
-          );
+          fields.push({
+            title: helper.ucWords(nowcast['@attributes'].name),
+            value: helper.getMessage(nowcast['@attributes'].forecast),
+            short: true,
+          });
         });
       }
 
