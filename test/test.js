@@ -1,34 +1,39 @@
+'use strict';
+
 /**
  * Requires (Test Modules)
  */
-var expect = require('expect.js');
+const expect = require('chai').expect;
 
 /**
  * Requires (Main App)
  */
-var lambda = require('../index');
+const lambda = require('../index');
+
+/**
+ * Timeout
+ */
+const timeout = 5000;
 
 /**
  * Mock AWS Lambda Context
  */
-var context = {
-  fail: function() {},
-  succeed: function() {}
+const context = {
+  fail() {},
+  succeed() {},
 };
 
-describe('slack-bot', function() {
-  this.timeout(5000);
-
-  it('Should list down all buses arrival timing at the bus stop', function(done) {
-    var output = lambda.handler({
+describe('slack-bot', () => {
+  it('Should list down all buses arrival timing at the bus stop', (done) => {
+    const output = lambda.handler({
       trigger_word: 'bus',
-      text: 'bus 14229'
+      text: 'bus 14229',
     }, context);
 
-    output.then(function(response) {
+    output.then((response) => {
       expect(response).to.have.property('attachments');
       expect(response.attachments).to.have.length(4);
-      response.attachments.forEach(function(bus) {
+      response.attachments.forEach((bus) => {
         expect(bus).to.have.property('title');
         expect(['In Operation', 'Not In Operation']).to.contain(bus.title);
 
@@ -37,15 +42,15 @@ describe('slack-bot', function() {
       });
       done();
     }).catch(done);
-  });
+  }).timeout(timeout);
 
-  it('Should list down a single bus arrival timing at the bus stop', function(done) {
-    var output = lambda.handler({
+  it('Should list down a single bus arrival timing at the bus stop', (done) => {
+    const output = lambda.handler({
       trigger_word: 'bus',
-      text: 'bus 14229 61'
+      text: 'bus 14229 61',
     }, context);
 
-    output.then(function(response) {
+    output.then((response) => {
       expect(response).to.have.property('attachments');
       expect(response.attachments).to.have.length(1);
       expect(response.attachments[0]).to.have.property('title');
@@ -56,43 +61,43 @@ describe('slack-bot', function() {
 
       done();
     }).catch(done);
-  });
+  }).timeout(timeout);
 
-  it('Should validate against invalid bus stop number', function(done) {
-    var output = lambda.handler({
+  it('Should validate against invalid bus stop number', (done) => {
+    const output = lambda.handler({
       trigger_word: 'bus',
-      text: 'bus invalidbustopno'
+      text: 'bus invalidbustopno',
     }, context);
 
-    output.then(function(response) {
-      expect(response).to.have.property('text');
-      expect(response.text).to.eql('Bus stop or number is invalid');
+    output.catch((error) => {
+      expect(error).to.have.property('message');
+      expect(error.message).to.eql('Bus stop or number is invalid');
 
       done();
     }).catch(done);
-  });
+  }).timeout(timeout);
 
-  it('Should validate against invalid bus number', function(done) {
-    var output = lambda.handler({
+  it('Should validate against invalid bus number', (done) => {
+    const output = lambda.handler({
       trigger_word: 'bus',
-      text: 'bus 14229 invalidbusno'
+      text: 'bus 14229 invalidbusno',
     }, context);
 
-    output.then(function(response) {
-      expect(response).to.have.property('text');
-      expect(response.text).to.eql('Bus stop or number is invalid');
+    output.catch((error) => {
+      expect(error).to.have.property('message');
+      expect(error.message).to.eql('Bus stop or number is invalid');
 
       done();
     }).catch(done);
-  });
+  }).timeout(timeout);
 
-  it('Should list down Singapore haze conditions', function(done) {
-    var output = lambda.handler({
+  it('Should list down Singapore haze conditions', (done) => {
+    const output = lambda.handler({
       trigger_word: 'haze',
-      text: 'haze'
+      text: 'haze',
     }, context);
 
-    output.then(function(response) {
+    output.then((response) => {
       expect(response).to.have.property('attachments');
       expect(response.attachments).to.have.length(1);
 
@@ -104,15 +109,15 @@ describe('slack-bot', function() {
 
       done();
     }).catch(done);
-  });
+  }).timeout(timeout);
 
-  it('Should list down Singapore 2 hour forecast weather conditions', function(done) {
-    var output = lambda.handler({
+  it('Should list down Singapore 2 hour forecast weather conditions', (done) => {
+    const output = lambda.handler({
       trigger_word: 'weather',
-      text: 'weather'
+      text: 'weather',
     }, context);
 
-    output.then(function(response) {
+    output.then((response) => {
       expect(response).to.have.property('attachments');
       expect(response.attachments).to.have.length(1);
 
@@ -124,15 +129,15 @@ describe('slack-bot', function() {
 
       done();
     }).catch(done);
-  });
+  }).timeout(timeout);
 
-  it('Should list down Google DNS information', function(done) {
-    var output = lambda.handler({
+  it('Should list down Google DNS information', (done) => {
+    const output = lambda.handler({
       trigger_word: 'ipinfo',
-      text: 'ipinfo 8.8.8.8'
+      text: 'ipinfo 8.8.8.8',
     }, context);
 
-    output.then(function(response) {
+    output.then((response) => {
       expect(response).to.have.property('attachments');
       expect(response.attachments).to.have.length(1);
 
@@ -144,39 +149,39 @@ describe('slack-bot', function() {
 
       done();
     }).catch(done);
-  });
+  }).timeout(timeout);
 
-  it('Should validate against invalid IP', function(done) {
-    var output = lambda.handler({
+  it('Should validate against invalid IP', (done) => {
+    const output = lambda.handler({
       trigger_word: 'ipinfo',
-      text: 'ipinfo invalidip'
+      text: 'ipinfo invalidip',
     }, context);
 
-    output.catch(function(error) {
+    output.catch((error) => {
       expect(error).to.have.property('message');
-      expect(error.message).to.eql('Invalid ip address: invalidip');
+      expect(error.message).to.eql('Invalid IP');
 
       done();
     }).catch(done);
-  });
+  }).timeout(timeout);
 
-  it('Should list down social stats count for a link', function(done) {
-    var output = lambda.handler({
+  it('Should list down social stats count for a link', (done) => {
+    const output = lambda.handler({
       trigger_word: 'socialstats',
-      text: 'socialstats <https://lesterchan.net/blog/2016/02/26/singtel-samsung-galaxy-s7-4g-and-galaxy-s7-edge-4g-price-plans/>'
+      text: 'socialstats https://lesterchan.net/blog/2017/06/30/apple-ipad-pro-10-5-space-grey-256gb-wi-fi-cellular/',
     }, context);
 
-    output.then(function(response) {
+    output.then((response) => {
       expect(response).to.have.property('attachments');
       expect(response.attachments).to.have.length(1);
 
       expect(response.attachments[0]).to.have.property('title');
-      expect(response.attachments[0].title).to.eql('https://lesterchan.net/blog/2016/02/26/singtel-samsung-galaxy-s7-4g-and-galaxy-s7-edge-4g-price-plans/');
+      expect(response.attachments[0].title).to.eql('https://lesterchan.net/blog/2017/06/30/apple-ipad-pro-10-5-space-grey-256gb-wi-fi-cellular/');
 
       expect(response.attachments[0]).to.have.property('fields');
       expect(response.attachments[0].fields).to.have.length(6);
 
       done();
     }).catch(done);
-  });
+  }).timeout(timeout);
 });

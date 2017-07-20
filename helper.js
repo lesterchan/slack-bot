@@ -1,76 +1,78 @@
+'use strict';
+
 /**
  * Helper
  */
 module.exports = {
-  ucWords: function(string) {
-    return string.replace(/\w\S*/g, function(str) {
-      return str.charAt(0).toUpperCase() + str.substr(1).toLowerCase();
-    });
+  ucWords(string) {
+    return string.replace('/\w\S*/g', (str) => str.charAt(0).toUpperCase() + str.substr(1).toLowerCase()); // eslint-disable-line no-useless-escape
   },
-  formatNumber: function(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  formatNumber(x) {
+    return x.toLocaleString('en');
   },
-  formatBytes: function(bytes, decimals) {
-    bytes = parseInt(bytes, 10);
-    if (bytes === 0) {
+  formatBytes(bytes, decimals) {
+    const b = parseInt(bytes, 10);
+    if (b === 0) {
       return '0 Byte';
     }
-    var k = 1024;
-    var dm = decimals + 1 || 3;
-    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-    var i = Math.floor(Math.log(bytes) / Math.log(k));
-    return (bytes / Math.pow(k, i)).toPrecision(dm) + ' ' + sizes[i];
+    const k = 1024;
+    const dm = decimals + 1 || 3;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+    const i = Math.floor(Math.log(b) / Math.log(k));
+    return `${(b / Math.pow(k, i)).toPrecision(dm)} ${sizes[i]}`; // eslint-disable-line no-restricted-properties
   },
-  getMessage: function(message) {
+  getMessage(message) {
+    let m = '';
     if (message) {
-      message = message.toString().trim();
+      m = message.toString().trim();
     } else {
-      message = '';
+      m = '';
     }
-    return (message.length > 0 ? message : 'N/A');
+    return (m.length > 0 ? m : 'N/A');
   },
-  parseCommand: function(message) {
-    message = this.removeSlackMessageFormatting(message);
-    var tokens = message.split(' ');
-    var command = {};
-    var cmd = tokens.shift();
-    var m = cmd.match(/(\w*)/);
-    if (m.length > 0) {
-      command[m[1]] = tokens;
+  parseCommand(message) {
+    const m = this.removeSlackMessageFormatting(message);
+    const tokens = m.split(' ');
+    const command = [];
+    const cmd = tokens.shift();
+    const match = cmd.match(/(\w*)/);
+    if (match.length > 0) {
+      command[match[1]] = tokens;
     }
     return command;
   },
-  getFallbackMessage: function(fields) {
-    var data = [];
-    fields.forEach(function(entry) {
+  getFallbackMessage(fields) {
+    const data = [];
+    fields.forEach((entry) => {
       if (entry.title && entry.title.length > 0) {
-        data.push(entry.title + ': ' + entry.value);
+        data.push(`${entry.title}: ${entry.value}`);
       }
     });
 
     return data.join(', ');
   },
-  removeSlackMessageFormatting: function(text) {
-    text = text.replace(/<([@#!])?([^>|]+)(?:\|([^>]+))?>/g, (function() {
-      return function(m, type, link, label) {
-        switch (type) {
-          case '!':
-            if (link === 'channel' || link === 'group' || link === 'everyone') {
-              return "@" + link;
-            }
-            break;
-          default:
-            link = link.replace(/^mailto:/, '');
-            if (label && link.indexOf(label) === -1) {
-              return label + " (" + link + ")";
-            }
-            return link;
+  removeSlackMessageFormatting(text) {
+    let t = text.replace(/<([@#!])?([^>|]+)(?:\|([^>]+))?>/g, (() =>
+      (m, type, link, label) => {
+        if (type === '!') {
+          if (link === 'channel' || link === 'group' || link === 'everyone') {
+            return `@${link}`;
+          }
+          return '';
         }
-      };
-    })(this));
-    text = text.replace(/&lt;/g, '<');
-    text = text.replace(/&gt;/g, '>');
-    text = text.replace(/&amp;/g, '&');
-    return text;
-  }
+        const l = link.replace(/^mailto:/, '');
+        if (label && l.indexOf(label) === -1) {
+          return `${label} (${l})`;
+        }
+        return l;
+      })(this));
+    t = text.replace(/&lt;/g, '<');
+    t = text.replace(/&gt;/g, '>');
+    t = text.replace(/&amp;/g, '&');
+    return t;
+  },
+  validateIp(ip) {
+    const matcher = /^(?:(?:2[0-4]\d|25[0-5]|1\d{2}|[1-9]?\d)\.){3}(?:2[0-4]\d|25[0-5]|1\d{2}|[1-9]?\d)$/;
+    return matcher.test(ip);
+  },
 };

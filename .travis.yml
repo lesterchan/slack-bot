@@ -1,6 +1,5 @@
 language: node_js
 node_js:
-  - "4.3"
-  - "4.2"
-  - "4.1"
-  - "4.0"
+  - "6.1"
+before_script:
+  - npm run lint

@@ -2,6 +2,7 @@
   "name": "slack-bot",
   "version": "1.0.0",
   "description": "Slack Bot",
+  "license": "MIT",
   "author": "Lester Chan <lesterchan@gmail.com> (https://lesterchan.net)",
   "homepage": "https://lesterchan.net",
   "repository": {
@@ -9,26 +10,34 @@
     "url": "https://github.com/lesterchan/slack-bot.git"
   },
   "main": "index.js",
-  "license": "MIT",
-  "config": {},
-  "dependencies": {
-    "ip": "*",
-    "moment": "*",
-    "request": "^2.74.0",
-    "request-promise": "*"
-  },
-  "devDependencies": {
-    "bluebird": "*",
-    "eslint": "*",
-    "eslint-config-google": "*",
-    "expect.js": "*",
-    "mocha": "*"
+  "scripts": {
+    "lint": "eslint *.js test/*.js",
+    "test": "mocha"
   },
   "eslintConfig": {
-    "extends": "google"
+    "extends": "techinasia-base",
+    "env": {
+      "mocha": true,
+      "node": true
+    },
+    "rules": {
+      "no-unused-expressions": 0,
+      "func-names": 0,
+      "strict": 0,
+      "max-len": 0
+    }
   },
-  "scripts": {
-    "lint": "eslint *.js",
-    "test": "mocha"
+  "devDependencies": {
+    "chai": "*",
+    "chai-as-promised": "*",
+    "eslint": "*",
+    "eslint-config-techinasia-base": "*",
+    "eslint-plugin-import": "*",
+    "mocha": "*"
+  },
+  "dependencies": {
+    "moment": "*",
+    "request": "*",
+    "request-promise": "*"
   }
 }

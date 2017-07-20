@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Config
  */
@@ -7,5 +9,5 @@ module.exports = {
   defaultColor: '#08C',
 
   defaultDateTimeFormat: 'HH:mm, Do MMMM YYYY',
-  defaultDateFormat: 'Do MMMM YYYY'
+  defaultDateFormat: 'Do MMMM YYYY',
 };
