@@ -103,7 +103,7 @@ module.exports = {
 
           // Push To Attachments
           attachments.push({
-            pretext: `:oncoming_bus:   *${bus.ServiceNo}*   :busstop: *${body.BusStopID}*`,
+            pretext: `:oncoming_bus:   *${bus.ServiceNo}*   :busstop: *${body.BusStopCode}*`,
             title: bus.Status,
             fallback: helper.getFallbackMessage(fields),
             mrkdwn_in: ['pretext', 'title'],
