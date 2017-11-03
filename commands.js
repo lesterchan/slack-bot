@@ -61,46 +61,44 @@ module.exports = {
           const fields = [];
 
           // Bus Arrival Timings
-          if (bus.Status !== 'Not In Operation') {
-            const nextBus = bus.NextBus || '';
-            const subBus = bus.NextBus2 || '';
-            const followBus = bus.NextBus3 || '';
+          const nextBus = bus.NextBus || '';
+          const subBus = bus.NextBus2 || '';
+          const followBus = bus.NextBus3 || '';
 
-            if (nextBus !== '') {
-              fields.push({
-                title: 'Next Bus',
-                value: `${moment(nextBus.EstimatedArrival).fromNow()} (${busLoad[nextBus.Load]}, ${busType[nextBus.Type]})`,
-              });
-            } else {
-              fields.push({
-                title: 'Next Bus',
-                value: 'Not Operating Now',
-              });
-            }
+          if (nextBus !== '') {
+            fields.push({
+              title: 'Next Bus',
+              value: `${moment(nextBus.EstimatedArrival).fromNow()} (${busLoad[nextBus.Load]}, ${busType[nextBus.Type]})`,
+            });
+          } else {
+            fields.push({
+              title: 'Next Bus',
+              value: 'Not Operating Now',
+            });
+          }
 
-            if (subBus !== '') {
-              fields.push({
-                title: 'Subsequent Bus',
-                value: `${moment(subBus.EstimatedArrival).fromNow()} (${busLoad[subBus.Load]}, ${busType[subBus.Type]})`,
-              });
-            } else {
-              fields.push({
-                title: 'Subsequent Bus',
-                value: 'Not Operating Now',
-              });
-            }
+          if (subBus !== '') {
+            fields.push({
+              title: 'Subsequent Bus',
+              value: `${moment(subBus.EstimatedArrival).fromNow()} (${busLoad[subBus.Load]}, ${busType[subBus.Type]})`,
+            });
+          } else {
+            fields.push({
+              title: 'Subsequent Bus',
+              value: 'Not Operating Now',
+            });
+          }
 
-            if (followBus !== '') {
-              fields.push({
-                title: 'Following Bus',
-                value: `${moment(followBus.EstimatedArrival).fromNow()} (${busLoad[followBus.Load]}, ${busType[followBus.Type]})`,
-              });
-            } else {
-              fields.push({
-                title: 'Following Bus',
-                value: 'Not Operating Now',
-              });
-            }
+          if (followBus !== '') {
+            fields.push({
+              title: 'Following Bus',
+              value: `${moment(followBus.EstimatedArrival).fromNow()} (${busLoad[followBus.Load]}, ${busType[followBus.Type]})`,
+            });
+          } else {
+            fields.push({
+              title: 'Following Bus',
+              value: 'Not Operating Now',
+            });
           }
 
           // Determine Color
