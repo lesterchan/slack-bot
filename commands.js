@@ -52,20 +52,15 @@ module.exports = {
 
           // Bus Arrival Timings
           if (bus.Status !== 'Not In Operation') {
-            const nextBus = bus.NextBus;
-            const subBus = bus.SubsequentBus;
-            const followBus = bus.SubsequentBus3;
+            const nextBus = bus.NextBus || '';
+            const subBus = bus.NextBus2 || '';
+            const followBus = bus.NextBus3 || '';
 
-            if (nextBus.EstimatedArrival !== '') {
+            if (nextBus !== '') {
               fields.push({
                 title: 'Next Bus',
                 value: `${moment(nextBus.EstimatedArrival).fromNow()} (${nextBus.Load})`,
               });
-            } else if (bus.Status === 'In Operation') {
-              fields.push({
-                title: 'Next Bus',
-                value: 'No Estimate Available',
-              });
             } else {
               fields.push({
                 title: 'Next Bus',
@@ -73,16 +68,11 @@ module.exports = {
               });
             }
 
-            if (subBus.EstimatedArrival !== '') {
+            if (subBus !== '') {
               fields.push({
                 title: 'Subsequent Bus',
                 value: `${moment(subBus.EstimatedArrival).fromNow()} (${subBus.Load})`,
               });
-            } else if (bus.Status === 'In Operation') {
-              fields.push({
-                title: 'Subsequent Bus',
-                value: 'No Estimate Available',
-              });
             } else {
               fields.push({
                 title: 'Subsequent Bus',
@@ -90,15 +80,10 @@ module.exports = {
               });
             }
 
-            if (followBus.EstimatedArrival !== '') {
+            if (followBus !== '') {
               fields.push({
                 title: 'Following Bus',
                 value: `${moment(followBus.EstimatedArrival).fromNow()} (${followBus.Load})`,
-              });
-            } else if (bus.Status === 'In Operation') {
-              fields.push({
-                title: 'Following Bus',
-                value: 'No Estimate Available',
               });
             } else {
               fields.push({
@@ -110,9 +95,9 @@ module.exports = {
 
           // Determine Color
           let color = '#479b02';
-          if (bus.NextBus.Load === 'Limited Standing') {
+          if (bus.NextBus.Load === 'LSD') {
             color = '#d60000';
-          } else if (bus.NextBus.Load === 'Standing Available') {
+          } else if (bus.NextBus.Load === 'SDA') {
             color = '#ea8522';
           }
 

@@ -35,8 +35,6 @@ describe('slack-bot', () => {
       expect(response.attachments).to.have.length(4);
       response.attachments.forEach((bus) => {
         expect(bus).to.have.property('title');
-        expect(['In Operation', 'Not In Operation']).to.contain(bus.title);
-
         expect(bus).to.have.property('fields');
         expect([0, 3]).to.contain(bus.fields.length);
       });
@@ -54,8 +52,6 @@ describe('slack-bot', () => {
       expect(response).to.have.property('attachments');
       expect(response.attachments).to.have.length(1);
       expect(response.attachments[0]).to.have.property('title');
-      expect(['In Operation', 'Not In Operation']).to.contain(response.attachments[0].title);
-
       expect(response.attachments[0]).to.have.property('fields');
       expect([0, 3]).to.contain(response.attachments[0].fields.length);
 
