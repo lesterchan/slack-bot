@@ -30,14 +30,14 @@
   "devDependencies": {
     "chai": "*",
     "chai-as-promised": "*",
-    "eslint": "*",
+    "eslint": "^4.19.1",
     "eslint-config-techinasia-base": "*",
-    "eslint-plugin-import": "*",
+    "eslint-plugin-import": "^2.12.0",
     "mocha": "*"
   },
   "dependencies": {
     "moment": "~> 2.19.3",
-    "request": "*",
+    "request": "^2.87.0",
     "request-promise": "*"
   }
 }
