@@ -28,16 +28,16 @@
     }
   },
   "devDependencies": {
-    "chai": "*",
+    "chai": "^4.1.2",
     "chai-as-promised": "*",
     "eslint": "^4.19.1",
     "eslint-config-techinasia-base": "*",
-    "eslint-plugin-import": "^2.12.0",
-    "mocha": "*"
+    "eslint-plugin-import": "^2.13.0",
+    "mocha": "^5.2.0"
   },
   "dependencies": {
     "moment": "~> 2.19.3",
     "request": "^2.87.0",
-    "request-promise": "*"
+    "request-promise": "^4.2.2"
   }
 }
