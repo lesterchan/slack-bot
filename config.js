@@ -5,6 +5,7 @@
  */
 module.exports = {
   lesterchanApiUrl: 'https://api.lesterchan.net/v1',
+  lesterchanApiSiteUrl: 'https://api.lesterchan.net',
 
   defaultColor: '#08C',
 

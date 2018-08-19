@@ -116,6 +116,9 @@ module.exports = {
             fallback: helper.getFallbackMessage(fields),
             mrkdwn_in: ['pretext', 'title'],
             color,
+            footer: 'LTA DataMall API',
+            footer_icon: `${config.lesterchanApiSiteUrl}/img/slack/footer_icon_lta.png`,
+            ts: moment().unix(),
             fields,
           });
         });
@@ -203,6 +206,9 @@ module.exports = {
         fallback: helper.getFallbackMessage(fields),
         mrkdwn_in: ['pretext', 'text'],
         color,
+        footer: 'NEA API',
+        footer_icon: `${config.lesterchanApiSiteUrl}/img/slack/footer_icon_nea.png`,
+        ts: moment().unix(),
         fields,
       }];
 
@@ -241,6 +247,9 @@ module.exports = {
         fallback: helper.getFallbackMessage(fields),
         mrkdwn_in: ['pretext', 'text'],
         color: config.defaultColor,
+        footer: 'NEA API',
+        footer_icon: `${config.lesterchanApiSiteUrl}/img/slack/footer_icon_nea.png`,
+        ts: moment().unix(),
         fields,
       }];
 
@@ -302,6 +311,9 @@ module.exports = {
         fallback: helper.getFallbackMessage(fields),
         mrkdwn_in: ['pretext', 'text'],
         color: config.defaultColor,
+        footer: 'NEA API',
+        footer_icon: `${config.lesterchanApiSiteUrl}/img/slack/footer_icon_ipinfo.png`,
+        ts: moment().unix(),
         fields,
       }];
 
@@ -367,6 +379,9 @@ module.exports = {
         fallback: helper.getFallbackMessage(fields),
         mrkdwn_in: ['pretext', 'text'],
         color: config.defaultColor,
+        footer: 'lesterchan.net API',
+        footer_icon: `${config.lesterchanApiSiteUrl}/img/slack/footer_icon_lesterchan.png`,
+        ts: moment().unix(),
         fields,
       }];
 
