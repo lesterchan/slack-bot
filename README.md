@@ -148,7 +148,7 @@ Example: ```bus 1039 61```
 Usage: ```haze```  
 Example: ```haze```
 
-### Singapore Weather 3 Hour Forecast
+### Singapore Weather 2 Hour Forecast
 Usage: ```weather```  
 Example: ```weather```
 
