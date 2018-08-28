@@ -150,7 +150,7 @@ module.exports = {
       const southPsi = parseInt(body.items[0].readings.pm25_one_hourly.south, 10);
       const averagePsi = Math.ceil((northPsi + centralPsi + eastPsi + westPsi + southPsi) / 5);
       const timestamp = body.items[0].timestamp;
-      const niceDate = moment(timestamp);
+      const niceDate = moment(timestamp).add(8, 'hours');
       let color = '#479b02';
 
       // Fields
@@ -206,7 +206,7 @@ module.exports = {
         fallback: helper.getFallbackMessage(fields),
         mrkdwn_in: ['pretext', 'text'],
         color,
-        footer: 'NEA API',
+        footer: 'Data.gov.sg API',
         footer_icon: `${config.lesterchanApiSiteUrl}/img/slack/footer_icon_nea.png`,
         ts: moment().unix(),
         fields,
@@ -243,7 +243,7 @@ module.exports = {
       const attachments = [{
         pretext: ':sunny: :cloud: :rain_cloud: *Singapore Weather Conditions*',
         title: '2 hour Forecast',
-        text: `${moment(body.items[0].update_timestamp).format(config.defaultDateTimeFormat)}.`,
+        text: `${moment(body.items[0].update_timestamp).add(8, 'hours').format(config.defaultDateTimeFormat)}.`,
         fallback: helper.getFallbackMessage(fields),
         mrkdwn_in: ['pretext', 'text'],
         color: config.defaultColor,
