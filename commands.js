@@ -143,14 +143,14 @@ module.exports = {
       json: true,
     }).then((body) => {
       // Variables
-      const northPsi = parseInt(body.item.region[0].record.reading['@attributes'].value, 10);
-      const centralPsi = parseInt(body.item.region[1].record.reading['@attributes'].value, 10);
-      const eastPsi = parseInt(body.item.region[2].record.reading['@attributes'].value, 10);
-      const westPsi = parseInt(body.item.region[3].record.reading['@attributes'].value, 10);
-      const southPsi = parseInt(body.item.region[4].record.reading['@attributes'].value, 10);
+      const northPsi = parseInt(body.items[0].readings.pm25_one_hourly.north, 10);
+      const centralPsi = parseInt(body.items[0].readings.pm25_one_hourly.central, 10);
+      const eastPsi = parseInt(body.items[0].readings.pm25_one_hourly.east, 10);
+      const westPsi = parseInt(body.items[0].readings.pm25_one_hourly.west, 10);
+      const southPsi = parseInt(body.items[0].readings.pm25_one_hourly.south, 10);
       const averagePsi = Math.ceil((northPsi + centralPsi + eastPsi + westPsi + southPsi) / 5);
-      const timestamp = body.item.region[0].record['@attributes'].timestamp;
-      const niceDate = moment(timestamp, 'YYYYMMDDHHmmss');
+      const timestamp = body.items[0].timestamp;
+      const niceDate = moment(timestamp);
       let color = '#479b02';
 
       // Fields
@@ -229,11 +229,11 @@ module.exports = {
       json: true,
     }).then((body) => {
       const fields = [];
-      if (body.item.weatherForecast.area && body.item.weatherForecast.area.length > 0) {
-        body.item.weatherForecast.area.forEach((nowcast) => {
+      if (body.items[0].forecasts && body.items[0].forecasts.length > 0) {
+        body.items[0].forecasts.forEach((nowcast) => {
           fields.push({
-            title: helper.ucWords(nowcast['@attributes'].name),
-            value: helper.getMessage(nowcast['@attributes'].forecast),
+            title: nowcast.area,
+            value: helper.getMessage(nowcast.forecast),
             short: true,
           });
         });
@@ -243,11 +243,11 @@ module.exports = {
       const attachments = [{
         pretext: ':sunny: :cloud: :rain_cloud: *Singapore Weather Conditions*',
         title: '2 hour Forecast',
-        text: `${body.item.validTime}.`,
+        text: `${moment(body.items[0].update_timestamp).format(config.defaultDateTimeFormat)}.`,
         fallback: helper.getFallbackMessage(fields),
         mrkdwn_in: ['pretext', 'text'],
         color: config.defaultColor,
-        footer: 'NEA API',
+        footer: 'Data.gov.sg API',
         footer_icon: `${config.lesterchanApiSiteUrl}/img/slack/footer_icon_nea.png`,
         ts: moment().unix(),
         fields,
