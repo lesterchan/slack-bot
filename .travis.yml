@@ -1,5 +1,9 @@
 language: node_js
 node_js:
-  - "8.1"
+- node
 before_script:
-  - npm run lint
+- npm run lint
+notifications:
+  email: false
+  slack:
+    secure: HkuGk6s0OoFBbBbateYRhTG51JW1DOUvSQBOcvYfiLfQ/3m+qFHxrWVYuyxfSefR36uBXZ6judPfxC+iWQlG0BqFoU15fr0XoXXxbwY2VYDOG4RKrwRTDzL6QKAeJW/PXwX0w2nASJfI3QHSgoA1PTlGYFPNUXf5liHlsivthOdK7ZogSNTXnOAXi4b7pF78ZCZ5vtHhrVHNk5buSs9kOjyjRwdc117JaUKNXKkRm0hrvSi+n5ScqTEvreXamqW5IJhdbGywQMwcEH93KkYxNQ3BtURhB8qfEhBDr3fXdq7cDEEJY4DPjK+AxqDnj0Adcr/qNrVchH8hQlLlL+tHlISXeXQ0WWMQWZKFVtrJLtCrsyOuozPpCCW1O/eVXCTPKDRLxlJPOurMsPxoILUhbWC4g7e73kQTZNmFDDtKVvUkoehGDTqiiOluNz/Anteky+cAga/l5wN9tlu86gkkmQPVeUNUUZxnn1jShGEERk3Rgc7Z4nFs7Yrfu+qKpygVr46uixILlHZhwqYjRhk3/QMUmvLk+EcSlrKGW0TWmldX2sTM0cFHCRwEJGHxWymsh4mwISMYSO3KCq8/UT46JmDncOH5RZHSK9IX/Ue+yzKREUBmF2g6Zo48xsHGW/MbJwRyJrpp5wJJtYjlyCwrYBNYoSTjcSrcNGL8UU+W8Q8=
