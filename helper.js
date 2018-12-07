@@ -53,20 +53,19 @@ module.exports = {
   },
   removeSlackMessageFormatting(text) {
     let t = text;
-    t = t.replace(/<([@#!])?([^>|]+)(?:\|([^>]+))?>/g, (() =>
-      (m, type, link, label) => {
-        if (type === '!') {
-          if (link === 'channel' || link === 'group' || link === 'everyone') {
-            return `@${link}`;
-          }
-          return '';
+    t = t.replace(/<([@#!])?([^>|]+)(?:\|([^>]+))?>/g, (() => (m, type, link, label) => {
+      if (type === '!') {
+        if (link === 'channel' || link === 'group' || link === 'everyone') {
+          return `@${link}`;
         }
-        const l = link.replace(/^mailto:/, '');
-        if (label && l.indexOf(label) === -1) {
-          return `${label} (${l})`;
-        }
-        return l;
-      })(this));
+        return '';
+      }
+      const l = link.replace(/^mailto:/, '');
+      if (label && l.indexOf(label) === -1) {
+        return `${label} (${l})`;
+      }
+      return l;
+    })(this));
     t = t.replace(/&lt;/g, '<');
     t = t.replace(/&gt;/g, '>');
     t = t.replace(/&amp;/g, '&');

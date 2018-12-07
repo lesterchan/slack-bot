@@ -28,11 +28,11 @@
     }
   },
   "devDependencies": {
-    "chai": "^4.1.2",
-    "chai-as-promised": "*",
-    "eslint": "^4.19.1",
-    "eslint-config-techinasia-base": "*",
-    "eslint-plugin-import": "^2.13.0",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "eslint": "^5.9.0",
+    "eslint-config-techinasia-base": "^0.8.0",
+    "eslint-plugin-import": "^2.14.0",
     "mocha": "^5.2.0"
   },
   "dependencies": {

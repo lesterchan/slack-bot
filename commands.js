@@ -149,7 +149,7 @@ module.exports = {
       const westPsi = parseInt(body.items[0].readings.pm25_one_hourly.west, 10);
       const southPsi = parseInt(body.items[0].readings.pm25_one_hourly.south, 10);
       const averagePsi = Math.ceil((northPsi + centralPsi + eastPsi + westPsi + southPsi) / 5);
-      const timestamp = body.items[0].timestamp;
+      const { timestamp } = body.items[0];
       const niceDate = moment(timestamp).add(8, 'hours');
       let color = '#479b02';
 

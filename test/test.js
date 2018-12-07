@@ -3,7 +3,7 @@
 /**
  * Requires (Test Modules)
  */
-const expect = require('chai').expect;
+const { expect } = require('chai');
 
 /**
  * Requires (Main App)
