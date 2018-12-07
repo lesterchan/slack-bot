@@ -36,8 +36,8 @@
     "mocha": "^5.2.0"
   },
   "dependencies": {
-    "moment": "~> 2.19.3",
-    "request": "^2.87.0",
+    "moment": "^2.22.2",
+    "request": "^2.88.0",
     "request-promise": "^4.2.2"
   }
 }
