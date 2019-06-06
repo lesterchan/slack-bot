@@ -355,11 +355,6 @@ module.exports = {
           short: true,
         },
         {
-          title: 'Google+',
-          value: helper.formatNumber(body.count['google-plus']),
-          short: true,
-        },
-        {
           title: 'LinkedIn',
           value: helper.formatNumber(body.count.linkedin),
           short: true,
