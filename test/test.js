@@ -175,7 +175,7 @@ describe('slack-bot', () => {
       expect(response.attachments[0].title).to.eql('https://lesterchan.net/blog/2017/06/30/apple-ipad-pro-10-5-space-grey-256gb-wi-fi-cellular/');
 
       expect(response.attachments[0]).to.have.property('fields');
-      expect(response.attachments[0].fields).to.have.length(6);
+      expect(response.attachments[0].fields).to.have.length(5);
 
       done();
     }).catch(done);
