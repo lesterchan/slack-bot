@@ -355,11 +355,6 @@ module.exports = {
           short: true,
         },
         {
-          title: 'LinkedIn',
-          value: helper.formatNumber(body.count.linkedin),
-          short: true,
-        },
-        {
           title: 'Pinterest',
           value: helper.formatNumber(body.count.pinterest),
           short: true,
