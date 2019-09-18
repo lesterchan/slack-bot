@@ -27,12 +27,12 @@ describe('slack-bot', () => {
   it('Should list down all buses arrival timing at the bus stop', (done) => {
     const output = lambda.handler({
       trigger_word: 'bus',
-      text: 'bus 14229',
+      text: 'bus 44591',
     }, context);
 
     output.then((response) => {
       expect(response).to.have.property('attachments');
-      expect(response.attachments).to.have.length(4);
+      expect(response.attachments).to.have.length(2);
       response.attachments.forEach((bus) => {
         expect(bus).to.have.property('title');
         expect(bus).to.have.property('fields');
@@ -45,7 +45,7 @@ describe('slack-bot', () => {
   it('Should list down a single bus arrival timing at the bus stop', (done) => {
     const output = lambda.handler({
       trigger_word: 'bus',
-      text: 'bus 14229 61',
+      text: 'bus 30111 991',
     }, context);
 
     output.then((response) => {
