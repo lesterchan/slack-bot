@@ -142,10 +142,10 @@ You should see the response something like that:
 ## Commands
 ### Singapore Bus Arrival Timings 
 Usage: ```bus <busStopNo> <busNo>```  
-Example: ```bus 44591```
-
-Usage: ```bus <busStopNo> <busNo>```  
 Example: ```bus 30111 991```
+
+Usage: ```bus <busStopNo>```  
+Example: ```bus 44591```
 
 ### Singapore Haze Situation
 Usage: ```haze```  
