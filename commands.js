@@ -334,7 +334,7 @@ module.exports = {
     const link = commandArguments[0] || 'https://lesterchan.net';
 
     return rp({
-      uri: `${config.lesterchanApiUrl}/link/?page=${link}`,
+      uri: `${config.lesterchanApiUrl}/link?page=${link}`,
       json: true,
     }).then((body) => {
       // Fields
