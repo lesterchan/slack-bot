@@ -1,0 +1,17 @@
+name: GitHub CI/CD
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-test-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - name: Test
+        run: |
+          npm install
+          npm test
