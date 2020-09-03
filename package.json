@@ -30,10 +30,10 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
-    "eslint": "^7.6.0",
+    "eslint": "^7.8.1",
     "eslint-config-techinasia-base": "^0.8.0",
     "eslint-plugin-import": "^2.22.0",
-    "mocha": "^8.1.1"
+    "mocha": "^8.1.3"
   },
   "dependencies": {
     "moment": "^2.27.0",
